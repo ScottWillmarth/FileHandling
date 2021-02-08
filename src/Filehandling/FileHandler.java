@@ -33,8 +33,32 @@ public class FileHandler {
 		{
 			out = new BufferedWriter(new FileWriter(f));
 			System.out.println("Writing Something");
-			out.write("Something");
+			out.write("Something \n");
 			out.close();
+		}
+		catch (IOException e) {e.printStackTrace();}
+	}
+	
+	public static void appendFile(File f)
+	{
+		try 
+		{
+			PrintWriter app = new PrintWriter(new FileWriter(f, true));
+			@SuppressWarnings("resource")
+			Scanner myScan = new Scanner(System.in);
+			System.out.println("Please add the text to append");
+		    String input = myScan.nextLine();
+		    app.append(input.toString() +"\n");
+		    
+		    System.out.println("Add additional text? (Type NO to quit");
+		    input = myScan.nextLine();
+		    while(!input.equals("NO"))
+		    {
+		    	app.append(input.toString() +"\n");
+			    System.out.println("Add additional text? (Type NO to quit");
+			    input = myScan.nextLine();
+		    }
+		    app.close();
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
@@ -63,8 +87,9 @@ public class FileHandler {
         } 
         catch (Exception e) {System.err.println(e);} 
 		
-		//readFile(f);
+		readFile(f);
 		writeFile(f);
+		appendFile(f);
 
 	}
 }
