@@ -25,6 +25,19 @@ public class FileHandler {
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
+	
+	public static void writeFile(File f)
+	{
+		BufferedWriter out;
+		try 
+		{
+			out = new BufferedWriter(new FileWriter(f));
+			System.out.println("Writing Something");
+			out.write("Something");
+			out.close();
+		}
+		catch (IOException e) {e.printStackTrace();}
+	}
 
 	public static void main(String[] args) 
 	{
@@ -50,8 +63,8 @@ public class FileHandler {
         } 
         catch (Exception e) {System.err.println(e);} 
 		
-		readFile(f);
+		//readFile(f);
+		writeFile(f);
 
 	}
-
 }
